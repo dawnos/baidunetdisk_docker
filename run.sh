@@ -11,9 +11,12 @@ else
   DOWNLOAD_DIR=$2
 fi
 
-DISPLAY_CONF="-v /tmp/.X11-unix:/tmp/.X11-unix:rw -e DISPLAY=${DISPLAY}"
+# DISPLAY_CONF="-v /tmp/.X11-unix:/tmp/.X11-unix:rw -e DISPLAY=${DISPLAY}"
+DISPLAY_CONF=
 
 xhost +local:root
-docker run --rm ${DISPLAY_CONF} -v ${USERDATA_DIR}:/root/baidunetdisk -v ${DOWNLOAD_DIR}:/root/baidunetdiskdownload dawnos/baidunetdisk
+# docker run --rm ${DISPLAY_CONF} -v ${USERDATA_DIR}:/root/baidunetdisk -v ${DOWNLOAD_DIR}:/root/baidunetdiskdownload dawnos/baidunetdisk
+# docker run -it --rm ${DISPLAY_CONF} -p 5906:5901 -p 6080:6080 -v ${USERDATA_DIR}:/root/baidunetdisk -v ${DOWNLOAD_DIR}:/root/baidunetdiskdownload --entrypoint= dawnos/baidunetdisk /bin/bash
+docker run --rm ${DISPLAY_CONF} -p 5906:5901 -p 6080:6080 -v ${USERDATA_DIR}:/root/baidunetdisk -v ${DOWNLOAD_DIR}:/root/baidunetdiskdownload dawnos/baidunetdisk
 xhost -local:root 
 

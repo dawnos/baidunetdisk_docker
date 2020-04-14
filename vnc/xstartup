@@ -1,0 +1,24 @@
+#!/bin/sh
+
+xhost +
+
+# SESSION_MANAGER is inherited from the environment and some window
+# managers require that it be cleared.
+# http://osdir.com/ml/gnome.ximian.snapshots/2002-09/msg00034.html
+# For example, Xfce4 version 4.6.1 and Deb5-64 require the unsetenv.
+# Goolging indicates that others also require the unsetenv.
+unsetenv SESSION_MANAGER
+
+# Startup scripts, e.g. /etc/xdg/xfce4/xinitrc require
+# http://en.wikipedia.org/wiki/D-Bus to run correctly.
+unsetenv DBUS_SESSION_BUS_ADDRESS
+
+
+# Set VNCSESSION to tell /etc/xdg/xfce4/xinitrc to not run xscreensaver
+# http://vstone.eu/2009/04/disabling-xscreensaver-when-using-xfce-vnc/
+setenv VNCSESSION yes
+
+startxfce4 &
+
+# Make sure that copy / paste are correctly forwarded to the VNC viewer
+vncconfig -nowin &
