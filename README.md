@@ -1,7 +1,7 @@
 # Baidu NetDisk Docker
 
 ## Introduction
-Baidu has provide a NetDisk client for Linux (https://pan.baidu.com/download#pan). However, it only works on ubuntu newer than 18.04. To get it work on 16.04 or older, this repo share a docker image.
+Baidu has provide a NetDisk client for Linux (https://pan.baidu.com/download#pan). However, it only works on ubuntu 18.04 or newer. To get it work on 16.04 or older, this repo share a docker image.
 
 ## Usage
 
