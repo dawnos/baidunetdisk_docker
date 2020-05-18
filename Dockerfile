@@ -20,7 +20,12 @@ RUN apt update && apt install -y wget git && \
     ln -s $NOVNC/vnc.html $NOVNC/index.html && \
     touch /root/.Xauthority && \
     apt remove -y wget git && apt autoremove -y && apt clean && rm -rf /var/lib/apt/lists/*
-COPY vnc /root/.vnc
+
+# COPY vnc /root/.vnc
+
+ARG VNC_PASSWORD=12345678
+COPY xstartup /root/.vnc/
+RUN printf "${VNC_PASSWORD}\n${VNC_PASSWORD}\n\n" | vncpasswd
 
 COPY baidunetdisk_entrypoint.sh /
 ENTRYPOINT ["/baidunetdisk_entrypoint.sh"]
